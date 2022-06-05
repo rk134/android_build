@@ -5412,7 +5412,7 @@ INTERNAL_OTA_METADATA := $(PRODUCT_OUT)/ota_metadata
 ifeq ($(TARGET_BUILD_VARIANT),user)
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := false
 else
-ifneq ($(ARROW_BUILD),)
+ifneq ($(DERP_BUILD),)
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := true
 else
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := false
@@ -5425,13 +5425,13 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(OTA_FROM_TARGET_
 	@echo "Package OTA: $@"
 	$(call build-ota-package-target,$@,-k $(KEY_CERT_PAIR) --output_metadata_path $(INTERNAL_OTA_METADATA))
 
-ARROW_TARGET_PACKAGE := $(PRODUCT_OUT)/$(ARROW_VERSION).zip
+DERP_TARGET_PACKAGE := $(PRODUCT_OUT)/$(DERP_VERSION).zip
 
 .PHONY: otapackage bacon
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(ARROW_TARGET_PACKAGE)
-	$(hide) $(MD5SUM) $(ARROW_TARGET_PACKAGE) > $(ARROW_TARGET_PACKAGE).md5sum
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(DERP_TARGET_PACKAGE)
+	$(hide) $(MD5SUM) $(DERP_TARGET_PACKAGE) > $(DERP_TARGET_PACKAGE).md5sum
 	echo -e "========================================="
 	echo -e ""
 	echo -e "                 \033[1;34m''\033[0m                  "
@@ -5451,11 +5451,11 @@ bacon: otapackage
 	echo -e "        \`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\` \`\` \033[1;34m.   \033[0m"
 	echo -e "           \`\`\`\`\`\`\`\`\`\`\`\`\`\`\`\`          "
 	echo -e ""
-	echo -e "                ArrowOS"
+	echo -e "                DerpOS"
 	echo -e ""
 	echo -e "========================================="
 	echo -e ""
-	@echo "**Package complete"**: $(ARROW_TARGET_PACKAGE)"
+	@echo "**Package complete"**: $(DERP_TARGET_PACKAGE)"
 
 ifeq ($(BOARD_BUILD_RETROFIT_DYNAMIC_PARTITIONS_OTA_PACKAGE),true)
 name := $(product_name)-ota-retrofit-$(FILE_NAME_TAG)

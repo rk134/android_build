@@ -40,7 +40,7 @@ ifdef BOARD_SYSTEMSDK_VERSIONS
 endif
 
 # Ensure that the selected System SDK version is one of the supported versions.
-# The range of support versions becomes narrower when BOARD_SYSTEMSDK_VERSIONS
+# The range of support versions becomes nderper when BOARD_SYSTEMSDK_VERSIONS
 # is set, which is a subset of PLATFORM_SYSTEMSDK_VERSIONS.
 ifneq (,$(call has-system-sdk-version,$(LOCAL_SDK_VERSION)))
   ifneq ($(_cannot_use_platform_apis),true)
